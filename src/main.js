@@ -1,0 +1,12 @@
+import { createApp } from 'vue'
+import '@fontsource/fredoka/latin-600.css'
+import '@fontsource/fredoka/latin-700.css'
+import '@fontsource/yellowtail/latin-400.css'
+import '@fontsource/caveat/latin-600.css'
+import '@fontsource/dm-sans/latin-400.css'
+import '@fontsource/dm-sans/latin-600.css'
+import '@fontsource/noto-sans-tamil/tamil-500.css'
+import '@fontsource/noto-sans-tamil/tamil-700.css'
+import './styles/base.css'
+import App from './App.vue'
+createApp(App).mount('#app')

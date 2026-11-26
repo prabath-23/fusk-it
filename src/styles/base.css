@@ -1,0 +1,128 @@
+:root{
+  --night:#0B0A09; --night-2:#1A1410;
+  --wood:#B9783F; --wood-dk:#8A5527; --wood-hi:#D9A066;
+  --amber:#FFB547; --amber-2:#FFD58A; --red:#E8432A;
+  --turf:#3E7A2E; --turf-2:#5C9E3A;
+  --ink:#F6EBDD; --ink-dim:#C9B8A4;
+  --f-display:'Fredoka',system-ui,sans-serif; --f-script:'Yellowtail',cursive;
+  --f-hand:'Caveat',cursive; --f-body:'DM Sans',system-ui,sans-serif;
+  --f-ta:'Noto Sans Tamil','Mukta Malar',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night);color:var(--ink);font-family:var(--f-body)}
+body{min-height:100vh;overflow-x:hidden}
+.ta{font-family:var(--f-ta)}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--amber); color: #1A0E04; padding: .6rem 1rem; border-radius: 6px; font-weight: 600; }
+.skip-link:focus { top: 12px; }
+.display { font: 700 clamp(2rem, 6vw, 3.4rem)/1.05 var(--f-display); margin: 0; letter-spacing: .005em; color: var(--ink); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.3rem; border-radius: 999px;
+  font: 600 1rem var(--f-body); text-decoration: none; cursor: pointer; border: 1.5px solid transparent; transition: transform .15s, box-shadow .2s, background .2s; }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.btn.amber { background: var(--amber); color: #1A0E04; box-shadow: 0 0 0 0 rgba(255,181,71,.0); }
+.btn.amber:hover { box-shadow: 0 0 22px 2px rgba(255,181,71,.45); }
+.btn.amber:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: rgba(255,213,138,.45); }
+.btn.ghost:hover { border-color: var(--amber); }
+/* honey-pine wood used for frames and shelves */
+.wood { background:
+  linear-gradient(180deg, rgba(255,226,176,.25), transparent 12%, transparent 85%, rgba(0,0,0,.35)),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='200'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .12' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .16 0 0 0 0 .05 1.4 0 0 0 -.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E"),
+  #B97C3E; }
+::selection { background: var(--amber); color: #1A0E04; }
+/* below-the-fold sections skip layout/paint until they come near the viewport */
+/* (content-visibility removed: its paint containment clipped the full-bleed section colours) */
+
+/* ---- polish: warm night atmosphere shared by every section below the hero ---- */
+main > section:not(.hero) { position: relative; isolation: isolate; }
+/* a soft pool of lamplight behind the content */
+main > section:not(.hero)::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: -2;
+  background: radial-gradient(55% 45% at 50% 42%, rgba(255,170,70,.085), transparent 70%); }
+/* film grain over the whole page, so flat blacks read as night air rather than a void */
+body::after { content: ''; position: fixed; inset: -50%; pointer-events: none; z-index: 40; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+body { background: radial-gradient(120% 60% at 50% 0%, #1b130c, transparent 60%), var(--night); }
+/* hand-written amber eyebrow above section titles */
+.eyebrow { display: block; font: 400 clamp(1.3rem, 3.6vw, 1.75rem)/1 var(--f-script); color: var(--amber); margin: 0 0 .35rem;
+  transform: rotate(-3deg); text-shadow: 0 0 18px rgba(255,181,71,.55); }
+.display { text-shadow: 0 2px 0 rgba(0,0,0,.4), 0 0 40px rgba(255,181,71,.12); }
+.btn.amber { background: linear-gradient(#FFC766, #F39A2A); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 6px 18px rgba(243,154,42,.28); }
+.btn.amber:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 0 26px 4px rgba(255,181,71,.5); transform: translateY(-1px); }
+/* ---- bold pass: every section gets its own full-bleed colour world ---- */
+main > section:not(.hero)::after { left: 50%; right: auto; width: 100vw; transform: translateX(-50%); }
+main > section.menu::after { background:
+  radial-gradient(60% 50% at 50% 55%, rgba(60,140,255,.28), transparent 70%),
+  repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 2px, transparent 2px 90px),
+  linear-gradient(#0f2238, #0a1626); }
+main > section.free::after { background:
+  radial-gradient(50% 45% at 50% 45%, rgba(255,190,90,.35), transparent 72%),
+  linear-gradient(#2a1a0d, #1a0f07); }
+main > section.wallsec::after { background:
+  radial-gradient(70% 55% at 50% 50%, rgba(255,120,170,.22), transparent 70%),
+  radial-gradient(40% 40% at 15% 20%, rgba(120,220,200,.18), transparent 70%),
+  linear-gradient(#2b1630, #170b1b); }
+main > section.toys::after { background:
+  radial-gradient(60% 55% at 50% 55%, rgba(120,230,210,.28), transparent 70%),
+  linear-gradient(#0e3a3a, #08201f); }
+main > section.cta::after { background:
+  radial-gradient(55% 55% at 30% 50%, rgba(255,90,60,.4), transparent 70%),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 60px, transparent 60px 120px),
+  linear-gradient(#4a0f0a, #230604); }
+main > section.visit::after { background:
+  radial-gradient(55% 50% at 30% 45%, rgba(255,200,110,.3), transparent 70%),
+  linear-gradient(#123018, #08180b); }
+main > section:not(.hero) .display { font-size: clamp(2.4rem, 7vw, 4.2rem); }
+
+/* ---- one screen per section: content sized to fit below the pinned shop top ---- */
+:root { --nav: 0px; --festoon: 70px; }
+main > section:not(.hero) { min-height: calc(100svh - var(--nav)); box-sizing: border-box; display: grid; align-content: center;
+  padding-top: calc(var(--festoon) + 30px) !important; padding-bottom: clamp(16px, 4vh, 40px) !important; }
+main > section:not(.hero) .display { font-size: clamp(2rem, min(6vw, 6.4vh), 3.8rem); }
+main > section:not(.hero) .head { margin-bottom: clamp(10px, 2.4vh, 28px); }
+main > section:not(.hero) .eyebrow { font-size: clamp(1.1rem, 2.6vh, 1.6rem); }
+/* note wall */
+main > section.wallsec .wall { height: clamp(300px, calc(100svh - var(--nav) - var(--festoon) - 290px), 640px); }
+main > section.wallsec .note { width: clamp(78px, min(12vw, 15vh), 124px); }
+/* popcorn machine */
+main > section.cta .machine { width: min(400px, 78vw, calc((100svh - var(--nav) - var(--festoon) - 60px) / 1.62)); }
+@media (max-width: 819px) { main > section.cta .machine { width: min(360px, 86vw, calc((100svh - var(--nav) - var(--festoon) - 250px) / 1.62)); }
+  main > section.cta { gap: 14px; } main > section.cta .copy p { margin: .3rem 0 1rem; font-size: 1rem; } }
+/* chalkboard and sign */
+main > section.free .board-wrap { width: min(900px, 100%, calc((100svh - var(--nav) - var(--festoon) - 270px) * 2.14)); }
+@media (max-width: 640px) { main > section.free .board-wrap { width: min(440px, 100%, calc((100svh - var(--nav) - var(--festoon) - 250px) * .9)); } }
+
+/* the festoon of warm bulbs: the same string as before, pinned still just under the shop top */
+.festoon { position: fixed; left: 0; right: 0; top: var(--nav); height: 70px;
+  z-index: 29; pointer-events: none; opacity: 0; transition: opacity .4s; opacity: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1100 70' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='g' x='-1' y='-1' width='3' height='3'%3E%3CfeGaussianBlur stdDeviation='7'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M0 8 Q137 46 275 12 Q412 46 550 12 Q687 46 825 12 Q962 46 1100 8' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cg fill='%23FFB547' filter='url(%23g)' opacity='.75'%3E%3Ccircle cx='69' cy='30' r='11'/%3E%3Ccircle cx='206' cy='30' r='11'/%3E%3Ccircle cx='344' cy='30' r='11'/%3E%3Ccircle cx='481' cy='30' r='11'/%3E%3Ccircle cx='619' cy='30' r='11'/%3E%3Ccircle cx='756' cy='30' r='11'/%3E%3Ccircle cx='894' cy='30' r='11'/%3E%3Ccircle cx='1031' cy='30' r='11'/%3E%3C/g%3E%3Cg fill='%23FFF1CF'%3E%3Ccircle cx='69' cy='32' r='4.5'/%3E%3Ccircle cx='206' cy='32' r='4.5'/%3E%3Ccircle cx='344' cy='32' r='4.5'/%3E%3Ccircle cx='481' cy='32' r='4.5'/%3E%3Ccircle cx='619' cy='32' r='4.5'/%3E%3Ccircle cx='756' cy='32' r='4.5'/%3E%3Ccircle cx='894' cy='32' r='4.5'/%3E%3Ccircle cx='1031' cy='32' r='4.5'/%3E%3C/g%3E%3C/svg%3E") center top / 1100px 70px repeat-x; } /* bulbs keep their laptop size and spacing on every screen */
+.festoon.on { opacity: .9; }
+
+/* swipe-style scrolling: every screen snaps into place under the shop top */
+/* switched on at the visitor's first scroll gesture (App.vue), so nothing can re-snap the page while it loads */
+html.snap { scroll-snap-type: y mandatory; }
+main > section { scroll-snap-align: start; scroll-snap-stop: always; }
+/* sections below the hero land just under the pinned shop top; the hero itself snaps flush to the top
+   (a page-wide scroll-padding made the hero taller than its snap slot, and the browser re-snapped to the menu on load) */
+main > section:not(.hero) { scroll-margin-top: var(--nav); }
+footer { scroll-snap-align: end; }
+
+/* phones: the toy shelf is three neat rows of three */
+@media (max-width: 600px) {
+  main > section.wallsec .head p { font-size: .92rem; }
+}
+
+/* closing time: once the footer shutter is down, the festoon and the sign dim out */
+.festoon, .dock-sign { transition: opacity 1.4s ease, filter 1.4s ease; }
+html.closing .festoon { opacity: .12 !important; }
+html.closing .dock-sign { filter: brightness(.35) saturate(.6); }
+html.closing .store-dim { opacity: .55; }
+/* scenes fill their screen: the TV and the toy shelf are the heroes of their sections */
+@media (min-width: 900px) {
+}
+
+/* the festoon steps back as the footer shutter starts to come down, so it never hangs in front of the sign */
+html.footer-on .festoon { opacity: 0 !important; }
